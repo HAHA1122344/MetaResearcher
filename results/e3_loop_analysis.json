@@ -1,0 +1,8 @@
+{
+  "experiment": "E3_LoopAnalysis",
+  "description": "Identical call rate with vs. without diversity reward",
+  "loop_rate_with_diversity": 0.20437956204379562,
+  "loop_rate_without_diversity": 0.3230769230769231,
+  "reduction": 0.11869736103312747,
+  "reduction_pct": "36.7%"
+}

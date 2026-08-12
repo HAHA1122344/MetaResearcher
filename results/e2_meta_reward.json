@@ -1,0 +1,17 @@
+{
+  "experiment": "E2_MetaReward",
+  "description": "Meta-reward vs. outcome-only reward on GAIA-mini",
+  "meta_reward": {
+    "accuracy": 0.9,
+    "avg_correctness": 0.9,
+    "avg_efficiency": 0.880952380952381,
+    "avg_reflection": 0.6288888888888889,
+    "avg_diversity": 0.5722222222222223,
+    "avg_meta": 0.7764126984126984
+  },
+  "outcome_only": {
+    "accuracy": 1.0,
+    "avg_correctness": 1.0
+  },
+  "improvement": -0.09999999999999998
+}

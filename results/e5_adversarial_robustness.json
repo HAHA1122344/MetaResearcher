@@ -1,0 +1,9 @@
+{
+  "experiment": "E5_AdversarialRobustness",
+  "description": "Robustness comparison: clean vs. adversarial environment",
+  "clean_accuracy": 0.9,
+  "adversarial_accuracy": 0.6,
+  "robustness_drop": 0.30000000000000004,
+  "robustness_drop_pct": "33.3%",
+  "n_questions": 30
+}

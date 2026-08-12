@@ -1,0 +1,17 @@
+{
+  "experiment": "E4_SwarmVsSingle",
+  "description": "Single agent vs. 3-agent swarm on GAIA-mini",
+  "single_agent": {
+    "accuracy": 0.9,
+    "avg_steps": 4.566666666666666,
+    "avg_tool_calls": 4.566666666666666
+  },
+  "swarm": {
+    "accuracy": 0.9,
+    "avg_steps": 13.7,
+    "avg_tool_calls": 13.7
+  },
+  "accuracy_improvement": 0.0,
+  "step_overhead": 9.133333333333333,
+  "call_overhead": 9.133333333333333
+}

@@ -1,0 +1,10 @@
+{"id": "adv_001", "topic": "Australia", "truth": "Canberra is the capital of Australia.", "misinformation": "Sydney is the capital of Australia.", "plausibility": "high", "source_type": "fabricated_authoritative"}
+{"id": "adv_002", "topic": "World War II", "truth": "World War II ended in 1945.", "misinformation": "World War II ended in 1944.", "plausibility": "medium", "source_type": "subtle_manipulation"}
+{"id": "adv_003", "topic": "Mona Lisa", "truth": "Leonardo da Vinci painted the Mona Lisa.", "misinformation": "Michelangelo painted the Mona Lisa.", "plausibility": "medium", "source_type": "contradictory_expert"}
+{"id": "adv_004", "topic": "Boiling point of water", "truth": "Water boils at 100°C at sea level.", "misinformation": "Water boils at 90°C at sea level.", "plausibility": "low", "source_type": "fabricated_authoritative"}
+{"id": "adv_005", "topic": "Mars", "truth": "Mars is known as the Red Planet.", "misinformation": "Venus is known as the Red Planet.", "plausibility": "medium", "source_type": "contradictory_expert"}
+{"id": "adv_006", "topic": "Sputnik", "truth": "Sputnik 1 was launched in 1957.", "misinformation": "Sputnik 1 was launched in 1959.", "plausibility": "medium", "source_type": "subtle_manipulation"}
+{"id": "adv_007", "topic": "iPhone", "truth": "The first iPhone was released in 2007.", "misinformation": "The first iPhone was released in 2008.", "plausibility": "low", "source_type": "fabricated_authoritative"}
+{"id": "adv_008", "topic": "Berlin Wall", "truth": "The Berlin Wall fell in 1989.", "misinformation": "The Berlin Wall fell in 1987.", "plausibility": "medium", "source_type": "subtle_manipulation"}
+{"id": "adv_009", "topic": "Higgs boson", "truth": "The Higgs boson was discovered in 2012 at CERN.", "misinformation": "The Higgs boson was discovered in 2010 at CERN.", "plausibility": "medium", "source_type": "fabricated_authoritative"}
+{"id": "adv_010", "topic": "Darwin", "truth": "The Origin of Species was published in 1859.", "misinformation": "The Origin of Species was published in 1860.", "plausibility": "low", "source_type": "subtle_manipulation"}

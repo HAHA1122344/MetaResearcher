@@ -1,0 +1,369 @@
+"""GAIA-mini benchmark dataset: 30 representative questions for preliminary validation."""
+
+import json
+import os
+
+# GAIA-mini: 30 questions spanning all three difficulty levels
+GAIA_MINI = [
+    # Level 1 - Easy (10 questions)
+    {
+        "id": "gaia_001",
+        "question": "What is the capital of Australia?",
+        "golden": "Canberra",
+        "level": "1",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_002",
+        "question": "Who wrote the novel '1984'?",
+        "golden": "George Orwell",
+        "level": "1",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_003",
+        "question": "What is the chemical symbol for gold?",
+        "golden": "Au",
+        "level": "1",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_004",
+        "question": "How many continents are there on Earth?",
+        "golden": "7",
+        "level": "1",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_005",
+        "question": "What year did World War II end?",
+        "golden": "1945",
+        "level": "1",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_006",
+        "question": "What is the largest ocean on Earth?",
+        "golden": "Pacific Ocean",
+        "level": "1",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_007",
+        "question": "Who painted the Mona Lisa?",
+        "golden": "Leonardo da Vinci",
+        "level": "1",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_008",
+        "question": "What is the boiling point of water in Celsius?",
+        "golden": "100",
+        "level": "1",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_009",
+        "question": "What is the smallest prime number?",
+        "golden": "2",
+        "level": "1",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_010",
+        "question": "What planet is known as the Red Planet?",
+        "golden": "Mars",
+        "level": "1",
+        "type": "fact_retrieval"
+    },
+    # Level 2 - Medium (10 questions)
+    {
+        "id": "gaia_011",
+        "question": "What is the population of Japan as of 2024 (approximate)?",
+        "golden": "125 million",
+        "level": "2",
+        "type": "multi_hop"
+    },
+    {
+        "id": "gaia_012",
+        "question": "Who was the first person to walk on the Moon, and in what year?",
+        "golden": "Neil Armstrong, 1969",
+        "level": "2",
+        "type": "multi_hop"
+    },
+    {
+        "id": "gaia_013",
+        "question": "What is the currency of Japan and what is its symbol?",
+        "golden": "Yen, ¥",
+        "level": "2",
+        "type": "comparison"
+    },
+    {
+        "id": "gaia_014",
+        "question": "Which element has the atomic number 79?",
+        "golden": "Gold",
+        "level": "2",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_015",
+        "question": "What is the distance from the Earth to the Moon in kilometers (approximate)?",
+        "golden": "384,400",
+        "level": "2",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_016",
+        "question": "Who developed the theory of general relativity?",
+        "golden": "Albert Einstein",
+        "level": "2",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_017",
+        "question": "What is the longest river in the world?",
+        "golden": "Nile River",
+        "level": "2",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_018",
+        "question": "In which year was the first iPhone released?",
+        "golden": "2007",
+        "level": "2",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_019",
+        "question": "What is the square root of 256?",
+        "golden": "16",
+        "level": "2",
+        "type": "enumeration"
+    },
+    {
+        "id": "gaia_020",
+        "question": "Who is the CEO of Tesla as of 2024?",
+        "golden": "Elon Musk",
+        "level": "2",
+        "type": "fact_retrieval"
+    },
+    # Level 3 - Hard (10 questions)
+    {
+        "id": "gaia_021",
+        "question": "What is the name of the first artificial satellite launched into space, and in what year?",
+        "golden": "Sputnik 1, 1957",
+        "level": "3",
+        "type": "multi_hop"
+    },
+    {
+        "id": "gaia_022",
+        "question": "Which country has the most time zones, including its overseas territories?",
+        "golden": "France",
+        "level": "3",
+        "type": "comparison"
+    },
+    {
+        "id": "gaia_023",
+        "question": "What is the deepest point in the Earth's oceans, and how deep is it?",
+        "golden": "Mariana Trench, ~11,034 meters",
+        "level": "3",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_024",
+        "question": "Who was the first woman to win a Nobel Prize, and in which field?",
+        "golden": "Marie Curie, Physics",
+        "level": "3",
+        "type": "multi_hop"
+    },
+    {
+        "id": "gaia_025",
+        "question": "What is the name of the galaxy that is closest to the Milky Way?",
+        "golden": "Andromeda Galaxy",
+        "level": "3",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_026",
+        "question": "In what year did the Berlin Wall fall, and what was its significance?",
+        "golden": "1989",
+        "level": "3",
+        "type": "multi_hop"
+    },
+    {
+        "id": "gaia_027",
+        "question": "What is the most abundant gas in the Earth's atmosphere by volume percentage?",
+        "golden": "Nitrogen, 78%",
+        "level": "3",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_028",
+        "question": "Which two countries share the longest international border in the world?",
+        "golden": "Canada and United States",
+        "level": "3",
+        "type": "comparison"
+    },
+    {
+        "id": "gaia_029",
+        "question": "What is the name of the particle discovered at CERN in 2012 that gives other particles mass?",
+        "golden": "Higgs boson",
+        "level": "3",
+        "type": "fact_retrieval"
+    },
+    {
+        "id": "gaia_030",
+        "question": "Who wrote 'The Origin of Species' and in what year was it first published?",
+        "golden": "Charles Darwin, 1859",
+        "level": "3",
+        "type": "multi_hop"
+    }
+]
+
+ADVERSARIAL_CORPUS = [
+    {
+        "id": "adv_001",
+        "topic": "Australia",
+        "truth": "Canberra is the capital of Australia.",
+        "misinformation": "Sydney is the capital of Australia.",
+        "plausibility": "high",
+        "source_type": "fabricated_authoritative"
+    },
+    {
+        "id": "adv_002",
+        "topic": "World War II",
+        "truth": "World War II ended in 1945.",
+        "misinformation": "World War II ended in 1944.",
+        "plausibility": "medium",
+        "source_type": "subtle_manipulation"
+    },
+    {
+        "id": "adv_003",
+        "topic": "Mona Lisa",
+        "truth": "Leonardo da Vinci painted the Mona Lisa.",
+        "misinformation": "Michelangelo painted the Mona Lisa.",
+        "plausibility": "medium",
+        "source_type": "contradictory_expert"
+    },
+    {
+        "id": "adv_004",
+        "topic": "Boiling point of water",
+        "truth": "Water boils at 100°C at sea level.",
+        "misinformation": "Water boils at 90°C at sea level.",
+        "plausibility": "low",
+        "source_type": "fabricated_authoritative"
+    },
+    {
+        "id": "adv_005",
+        "topic": "Mars",
+        "truth": "Mars is known as the Red Planet.",
+        "misinformation": "Venus is known as the Red Planet.",
+        "plausibility": "medium",
+        "source_type": "contradictory_expert"
+    },
+    {
+        "id": "adv_006",
+        "topic": "Sputnik",
+        "truth": "Sputnik 1 was launched in 1957.",
+        "misinformation": "Sputnik 1 was launched in 1959.",
+        "plausibility": "medium",
+        "source_type": "subtle_manipulation"
+    },
+    {
+        "id": "adv_007",
+        "topic": "iPhone",
+        "truth": "The first iPhone was released in 2007.",
+        "misinformation": "The first iPhone was released in 2008.",
+        "plausibility": "low",
+        "source_type": "fabricated_authoritative"
+    },
+    {
+        "id": "adv_008",
+        "topic": "Berlin Wall",
+        "truth": "The Berlin Wall fell in 1989.",
+        "misinformation": "The Berlin Wall fell in 1987.",
+        "plausibility": "medium",
+        "source_type": "subtle_manipulation"
+    },
+    {
+        "id": "adv_009",
+        "topic": "Higgs boson",
+        "truth": "The Higgs boson was discovered in 2012 at CERN.",
+        "misinformation": "The Higgs boson was discovered in 2010 at CERN.",
+        "plausibility": "medium",
+        "source_type": "fabricated_authoritative"
+    },
+    {
+        "id": "adv_010",
+        "topic": "Darwin",
+        "truth": "The Origin of Species was published in 1859.",
+        "misinformation": "The Origin of Species was published in 1860.",
+        "plausibility": "low",
+        "source_type": "subtle_manipulation"
+    }
+]
+
+
+def load_gaia_mini(path=None):
+    """Load GAIA-mini dataset."""
+    if path is None:
+        base = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data")
+        path = os.path.join(base, "gaia_mini.jsonl")
+    questions = []
+    with open(path, "r") as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                questions.append(json.loads(line))
+    return questions
+
+
+def load_adversarial_corpus(path=None):
+    """Load adversarial corpus."""
+    if path is None:
+        base = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data")
+        path = os.path.join(base, "adversarial_corpus.jsonl")
+    corpus = []
+    with open(path, "r") as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                corpus.append(json.loads(line))
+    return corpus
+
+
+def save_gaia_mini(questions, path=None):
+    """Save GAIA-mini dataset."""
+    if path is None:
+        base = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data")
+        path = os.path.join(base, "gaia_mini.jsonl")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w") as f:
+        for q in questions:
+            f.write(json.dumps(q, ensure_ascii=False) + "\n")
+
+
+def save_adversarial_corpus(corpus, path=None):
+    """Save adversarial corpus."""
+    if path is None:
+        base = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data")
+        path = os.path.join(base, "adversarial_corpus.jsonl")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w") as f:
+        for item in corpus:
+            f.write(json.dumps(item, ensure_ascii=False) + "\n")
+
+
+if __name__ == "__main__":
+    # Generate and save datasets
+    save_gaia_mini(GAIA_MINI)
+    save_adversarial_corpus(ADVERSARIAL_CORPUS)
+    print(f"Saved {len(GAIA_MINI)} GAIA-mini questions")
+    print(f"Saved {len(ADVERSARIAL_CORPUS)} adversarial corpus items")
+
+    # Verify
+    loaded = load_gaia_mini()
+    adv = load_adversarial_corpus()
+    assert len(loaded) == 30, f"Expected 30, got {len(loaded)}"
+    assert len(adv) == 10, f"Expected 10, got {len(adv)}"
+    print("Verification passed!")

@@ -1,0 +1,19 @@
+{
+  "experiment": "E1_Baseline",
+  "description": "Single agent on GAIA-mini (30 questions)",
+  "n_questions": 30,
+  "accuracy": 0.9,
+  "accuracy_ci": [
+    0.7437855868473339,
+    0.9654007400402839
+  ],
+  "loop_rate": 0.20437956204379562,
+  "total_tool_calls": 137,
+  "level_accuracy": {
+    "level_1": 1.0,
+    "level_2": 0.8,
+    "level_3": 0.9
+  },
+  "avg_steps": 4.566666666666666,
+  "avg_tool_calls": 4.566666666666666
+}
