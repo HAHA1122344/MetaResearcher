@@ -18,7 +18,6 @@
 \usepackage{xcolor}
 \usepackage{multirow}
 \usepackage{colortbl}
-\usepackage{hyperref}
 \setlength{\headheight}{20pt}
 
 % Disable \textbf bold in body text (section titles use \bfseries, unaffected)
@@ -120,6 +119,8 @@ Self-reflection has emerged as a key mechanism for improving LLM agent performan
 
 Constitutional AI~\cite{b26} demonstrated that language models can self-improve harmlessness through principled self-feedback without human labels. Adversarial robustness research~\cite{b27} has shown that aligned language models remain vulnerable to universal, transferable attacks, underscoring the importance of robustness training.
 
+Beyond single-turn refinement, ICRL~\cite{b28} jointly trains solver and critic from a shared backbone with distribution-calibration re-weighting, while ReflexiCoder~\cite{b29} internalizes the full generation-reflection-correction trajectory into model weights via reinforcement learning. RePro~\cite{b30} trains agents to self-generate progress signals through a forward-then-reflect paradigm, and RefGRPO~\cite{b31} adds a calibration bonus by contrasting self-reflection with actual outcomes, reducing underconfidence.
+
 Self-RAG~\cite{b9} further demonstrated that models can learn to critique their own retrieval and generation, extending self-reflection beyond single-turn refinement into the retrieval-augmented setting.
 
 The landscape of process reward models (PRMs)~\cite{b32} has advanced from outcome-only signals to token-level supervision, exemplified by the step-level verification paradigm~\cite{b8}. ToRA~\cite{b53} integrated tool use with step-level reasoning for mathematical problem solving.
@@ -127,12 +128,12 @@ The landscape of process reward models (PRMs)~\cite{b32} has advanced from outco
 MetaResearcher's reflection depth reward introduces a \textit{trace-level} reward component that explicitly incentivizes genuine self-correction, extending the line of work from Self-Refine and Reflexion into the reinforcement learning setting.
 
 \subsection{Process Reward Models}
-Process reward models (PRMs) provide step-level supervision that complements outcome-only rewards. A comprehensive survey~\cite{b32} categorizes PRMs into discriminative and generative variants. The transition from outcome reward models to process supervision~\cite{b38} has advanced the field significantly, with step-level verification~\cite{b8} establishing a foundation for token-level reward learning. MetaResearcher's meta-reward mechanism draws on these PRM advances but extends them to the deep research agent setting with multi-component rewards.
+Process reward models (PRMs) provide step-level supervision that complements outcome-only rewards. A comprehensive survey~\cite{b32} categorizes PRMs into discriminative and generative variants. Approaches such as iStar~\cite{b33} combine implicit PRMs with agentic reinforcement learning, while StepORLM~\cite{b34} creates self-evolving loops between policy and generative PRMs. The SWE-TRACE framework~\cite{b35} applies rubric-based PRMs to software engineering agents, and DPRM~\cite{b36} extends implicit rewards to multi-hop question answering. The transition from outcome reward models to process supervision~\cite{b38} and discriminative policy optimization for token-level rewards~\cite{b37} have advanced the field significantly, with step-level verification~\cite{b8} establishing a foundation for token-level reward learning. MetaResearcher's meta-reward mechanism draws on these PRM advances but extends them to the deep research agent setting with multi-component rewards.
 
 \subsection{Adversarial Training Environments}
-Research on adversarial robustness has shown that aligned language models remain vulnerable to universal, transferable attacks~\cite{b27}, and that injecting high-plausibility misinformation can cause accuracy collapse in agentic systems. Trust-but-verify approaches and persuasion-balanced training~\cite{b45} address the challenge of helping agents both resist harmful persuasion and accept beneficial correction.
+Research on adversarial robustness has shown that aligned language models remain vulnerable to universal, transferable attacks~\cite{b27}. The Synthetic Web benchmark~\cite{b39} demonstrates that injecting a single high-plausibility misinformation article causes accuracy collapse across frontier models, and the POTEMKIN framework~\cite{b40} formalizes Adversarial Environmental Injection (AEI), identifying breadth and depth attack surfaces. Trust-but-verify approaches and persuasion-balanced training~\cite{b45} address the challenge of helping agents both resist harmful persuasion and accept beneficial correction.
 
-Multi-agent approaches to adversarial robustness explore how collaborative systems can detect and mitigate misinformation, complementing the single-agent robustness methods described above.
+Multi-agent approaches to adversarial robustness include credibility scoring mechanisms~\cite{b41} that separate each agent's contribution from its credibility, symbolic adversarial frameworks~\cite{b42} for evolving fake news generation and detection, and domain-specific evaluations such as MedMisBench~\cite{b43} that demonstrate accuracy collapse under misleading clinical context. Multi-agent auditing systems~\cite{b44} further reduce hallucination rates through adversarial verification.
 
 MetaResearcher's Evolving Virtual World incorporates adversarial information injection \textit{during training}, distinguishing it from evaluation-only adversarial benchmarks.
 
